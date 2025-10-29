@@ -40,8 +40,8 @@ const items = [
     <Head>
         <title>Inicio</title>
     </Head>
-    <div class="container">
-        <div class="row g-4 justify-items-center">
+    <div class="p-3">
+        <div class="row g-4 justify-content-center">
             <div class="col-lg-2" v-for="(item, index) in items" :key="index">
                 <CardSimple
                     :title="item.title"

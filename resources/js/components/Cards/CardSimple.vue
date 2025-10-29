@@ -40,12 +40,24 @@ const formattedValue = computed(() => {
 </script>
 
 <template>
-    <div class="card text-center border-0 shadow-md p-3">
-        <font-awesome-icon
-            :icon="props.icon"
-            class="fa-3x text-secondary mb-3"
-        />
-        <h5 class="fw-bold">{{ title }}</h5>
-        <p class="fs-5">{{ formattedValue }}</p>
+    <div class="card shadow">
+        <div
+            class="card-body d-flex justify-content-between align-items-center"
+        >
+            <div class="col-10">
+                <h5 class="text-muted fs-6 mt-0" title="Number of Customers">
+                    {{ title }}
+                </h5>
+                <h3>{{ formattedValue }}</h3>
+            </div>
+            <div
+                class="col-2 bg-secondary p-3 rounded d-flex align-items-center justify-content-center"
+            >
+                <font-awesome-icon
+                    :icon="props.icon"
+                    class="fa-1x text-light"
+                />
+            </div>
+        </div>
     </div>
 </template>
