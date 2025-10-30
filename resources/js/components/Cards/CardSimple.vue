@@ -45,10 +45,10 @@ const formattedValue = computed(() => {
             class="card-body d-flex justify-content-between align-items-center"
         >
             <div class="col-10">
-                <h5 class="text-muted fs-6 mt-0" title="Number of Customers">
+                <h3 class="text-muted fs-6 mt-0">
                     {{ title }}
-                </h5>
-                <h3>{{ formattedValue }}</h3>
+                </h3>
+                <h5 class="fs-4">{{ formattedValue }}</h5>
             </div>
             <div
                 class="col-2 bg-secondary p-3 rounded d-flex align-items-center justify-content-center"

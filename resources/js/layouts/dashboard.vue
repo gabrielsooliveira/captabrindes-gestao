@@ -5,7 +5,7 @@ import Navbar from "@/js/components/Navbar.vue";
 <template>
     <div>
         <Navbar />
-        <div class="container-fluid mt-4">
+        <div class="container-fluid mt-5 pt-5">
             <slot />
         </div>
     </div>

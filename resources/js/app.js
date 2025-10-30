@@ -3,9 +3,10 @@ import 'bootstrap';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
+import { ZiggyVue } from 'ziggy';
 
-import LayoutDashboard from '@/js/Layouts/dashboard.vue';
-import LayoutAuth from '@/js/Layouts/auth.vue';
+import LayoutDashboard from '@/js/Layouts/Dashboard.vue';
+import LayoutAuth from '@/js/Layouts/Auth.vue';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -17,11 +18,11 @@ library.add(fas, fab, far);
 
 createInertiaApp({
     resolve: name => {
-        const pages = import.meta.glob('./Pages/**/*.vue')
+        const pages = import.meta.glob('./pages/**/*.vue')
         const resolvePageComponent = (name, pages) => {
-            const importPage = pages[`./Pages/${name}.vue`];
+            const importPage = pages[`./pages/${name}.vue`];
             if (!importPage) {
-                throw new Error(`Page not found: ./Pages/${name}.vue`);
+                throw new Error(`Page not found: ./pages/${name}.vue`);
             }
             return importPage();
         };
@@ -38,6 +39,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .component('font-awesome-icon', FontAwesomeIcon)
+            .use(ZiggyVue)
             .use(plugin)
             .mount(el)
     },

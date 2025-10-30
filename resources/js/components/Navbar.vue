@@ -1,4 +1,5 @@
 <script setup>
+import { Link } from "@inertiajs/vue3";
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const isMenuOpen = ref(false);
@@ -37,7 +38,7 @@ onBeforeUnmount(() => {
 
 <template>
     <nav
-        class="navbar navbar-expand-lg navbar-light bg-light shadow-sm custom-navbar"
+        class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top z-1"
     >
         <div class="container-fluid">
             <!-- Logo -->
@@ -60,7 +61,7 @@ onBeforeUnmount(() => {
             >
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" :href="route('home')">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Propostas</a>
@@ -69,7 +70,9 @@ onBeforeUnmount(() => {
                         <a class="nav-link" href="#">Projetos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Produtos</a>
+                        <Link class="nav-link" :href="route('product.index')"
+                            >Produtos</Link
+                        >
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Clientes</a>
@@ -120,11 +123,15 @@ onBeforeUnmount(() => {
                             </li>
                             <li><hr class="dropdown-divider" /></li>
                             <li>
-                                <a
+                                <Link
+                                    :href="route('logout')"
+                                    method="post"
+                                    as="button"
                                     class="dropdown-item text-danger"
-                                    href="#"
-                                    @click="closeMenu"
-                                    >Sair</a
+                                    ><font-awesome-icon
+                                        icon="fa-solid fa-right-from-bracket"
+                                    />
+                                    Logout</Link
                                 >
                             </li>
                         </ul>
@@ -149,64 +156,54 @@ onBeforeUnmount(() => {
 
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="#" @click="closeMenu">Início</a>
+                    <a class="nav-link" :href="route('home')" @click="closeMenu"
+                        >Inicio</a
+                    >
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" @click="closeMenu">Sobre</a>
+                    <a class="nav-link" href="#" @click="closeMenu"
+                        >Propostas</a
+                    >
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" @click="closeMenu">Serviços</a>
+                    <a class="nav-link" href="#" @click="closeMenu">Projetos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" @click="closeMenu">Contato</a>
+                    <Link
+                        class="nav-link"
+                        :href="route('product.index')"
+                        @click="closeMenu"
+                        >Produtos</Link
+                    >
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" @click="closeMenu">Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" @click="closeMenu">WebSite</a>
                 </li>
                 <li><hr /></li>
-            </ul>
-            <div class="d-flex align-items-center">
-                <div class="dropdown ms-auto">
-                    <a
-                        class="nav-link dropdown-toggle d-flex align-items-center"
-                        href="#"
-                        id="userDropdown"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
+                <li class="nav-item">
+                    <a class="nav-link" href="#" @click="closeMenu">Perfil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" @click="closeMenu"
+                        >Configurações</a
                     >
-                        <img
-                            src="https://dummyimage.com/600x400/000/fff"
-                            class="rounded-circle me-2"
-                            alt="User Avatar"
-                            width="32"
-                            height="32"
+                </li>
+                <li class="nav-item">
+                    <Link
+                        :href="route('logout')"
+                        method="post"
+                        as="button"
+                        class="nav-link link-danger"
+                        ><font-awesome-icon
+                            icon="fa-solid fa-right-from-bracket"
                         />
-                        <span>Gabriel</span>
-                    </a>
-                    <ul
-                        class="dropdown-menu dropdown-menu-end shadow"
-                        aria-labelledby="userDropdown"
+                        Logout</Link
                     >
-                        <li>
-                            <a class="dropdown-item" href="#" @click="closeMenu"
-                                >Perfil</a
-                            >
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#" @click="closeMenu"
-                                >Configurações</a
-                            >
-                        </li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li>
-                            <a
-                                class="dropdown-item text-danger"
-                                href="#"
-                                @click="closeMenu"
-                                >Sair</a
-                            >
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
     </transition>
 </template>
